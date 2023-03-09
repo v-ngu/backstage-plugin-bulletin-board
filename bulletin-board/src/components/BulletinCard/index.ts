@@ -1,0 +1,1 @@
+export { BulletinCard } from './BulletinCard';
