@@ -15,8 +15,8 @@ Bulletin Board is a Backstage plugin that allows you to share interesting ideas,
 
 You will **need** to install both frontend and backend pluggins:
 
-- Installation instructions for [frontend plugin](./bulletin-board/README.md)
-- Installation instructions for [backend plugin](./bulletin-board-backend/README.md)
+- Installation instructions for [frontend plugin](./plugins/bulletin-board/README.md)
+- Installation instructions for [backend plugin](./plugins/bulletin-board-backend/README.md)
 
 ## Screenshots
 
