@@ -10,8 +10,8 @@ const body: any = {
   url: "www.a.com",
   tags: ["tag1", "tag2"],
   user: "Guest",
-  created_at: '2023-01-07T13:27:00.000Z',
-  updated_at: '2023-02-07T13:27:00.000Z'
+  created_at: "2023-01-07T13:27:00.000Z",
+  updated_at: "2023-02-07T13:27:00.000Z"
 }
 
 describe('DatabaseHandler', () => {
@@ -64,23 +64,36 @@ describe('DatabaseHandler', () => {
         })
       };
 
+      let data = {
+        bulletin_id: "id1",
+        bulletin_title: "T",
+        bulletin_description: "D",
+        bulletin_url: "www.a.com",
+        bulletin_tags: "tag1,tag2",
+        created_by: "Guest",
+        updated_by: "Guest",
+        created_at: "2023-01-07T13:27:00.000Z",
+        updated_at: "2023-02-07T13:27:00.000Z"
+      };
+
+      const expectedData = () => {
+        if (databaseId === 'SQLITE_3') {
+          return data;
+        } else {
+          return ({
+            ...data,
+            created_at: new Date("2023-01-07T13:27:00.000Z"),
+            updated_at: new Date("2023-02-07T13:27:00.000Z")
+          })
+        }
+      }
+
       await dbHandler.getBulletins(request as Request, response as Response);
 
       expect(responseObject).toEqual({
         status: 'ok',
-        data: [{
-          bulletin_id: "id1",
-          bulletin_title: "T",
-          bulletin_description: "D",
-          bulletin_url: "www.a.com",
-          bulletin_tags: "tag1,tag2",
-          created_by: "Guest",
-          updated_by: "Guest",
-          created_at: "2023-01-07T13:27:00.000Z",
-          updated_at: '2023-02-07T13:27:00.000Z'
-        }]
+        data: [expectedData()]
       });
-    },
-    60000
+    }
   );
 });
