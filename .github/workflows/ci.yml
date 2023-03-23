@@ -26,7 +26,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: yarn install
-    - run: yarn install:ci
     - run: yarn tsc
     - run: yarn build
     - run: yarn test:all
