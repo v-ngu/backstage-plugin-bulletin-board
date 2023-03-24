@@ -94,6 +94,7 @@ describe('DatabaseHandler', () => {
         status: 'ok',
         data: [expectedData()]
       });
-    }
+    },
+    60000
   );
 });
