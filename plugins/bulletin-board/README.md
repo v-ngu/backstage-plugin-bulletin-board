@@ -16,9 +16,21 @@ const routes = (
 
   <FlatRoutes>
     ...
-+    <Route path="/bulletin-board" element={<BulletinBoardPage />} />
++   <Route path="/bulletin-board" element={<BulletinBoardPage />} />
     ...
   </FlatRoutes>
 );
 
+```
+
+Add a **Bulletin Board icon to the Sidebar**. In `packages/app/src/components/Root/Root.tsx` add:
+
+```diff
++ import DashboardIcon from '@material-ui/icons/Dashboard';;
+
+  <SidebarGroup label="Menu" icon={<MenuIcon />}>
+    ...
++   <SidebarItem icon={DashboardIcon} to="bulletin-board" text="Bulletin Board" />
+    ...
+  </SideGroup>
 ```
