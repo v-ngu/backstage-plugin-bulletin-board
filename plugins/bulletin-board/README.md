@@ -26,7 +26,7 @@ const routes = (
 Add a **Bulletin Board icon to the Sidebar**. In `packages/app/src/components/Root/Root.tsx` add:
 
 ```diff
-+ import DashboardIcon from '@material-ui/icons/Dashboard';;
++ import DashboardIcon from '@material-ui/icons/Dashboard';
 
   <SidebarGroup label="Menu" icon={<MenuIcon />}>
     ...
