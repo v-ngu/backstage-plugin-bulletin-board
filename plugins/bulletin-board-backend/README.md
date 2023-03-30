@@ -21,7 +21,6 @@ export default async function createPlugin(
     logger: env.logger,
     config: env.config,
     database: env.database,
-    identity: env.identity,
   });
 }
 ```
