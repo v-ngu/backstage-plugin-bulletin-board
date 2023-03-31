@@ -35,6 +35,7 @@ export const FormDialog = (props: any) => {
   const [newTagInput, setNewTagInput] = React.useState("");
   const [formInput, setFormInput] = React.useState(() => initiateNewForm());
   const [formValidation, setFormValidation] = React.useState(() => resetFormValidation());
+  const [deleteValidator, setDeleteValidator] = React.useState(false);
   const {titleError, descriptionError} = formValidation;
   const currentCard = props.currentCard();
 
@@ -98,6 +99,7 @@ export const FormDialog = (props: any) => {
     setTimeout(() => props.setEditMode(false), 1);
     setFormInput(initiateNewForm());
     setFormValidation(resetFormValidation());
+    setDeleteValidator(false);
     props.closeDialog();
   }
 
@@ -123,11 +125,25 @@ export const FormDialog = (props: any) => {
     eraseForm();
   }
 
-  const deleteButton = () => (
-    <IconButton onClick={handleDeleteCard}>
-      <DeleteIcon />
-    </IconButton>
-  )
+  const deleteButton = () => {
+    if (!deleteValidator) {
+      return (
+        <IconButton onClick={() => setDeleteValidator(true)}>
+          <DeleteIcon />
+        </IconButton>
+      )
+    } else {
+        return(
+          <Button 
+            onClick={handleDeleteCard}
+            color="secondary" 
+            variant="contained"
+          >
+            Confirm Delete
+          </Button>
+        )
+      }
+  }
 
   const formTitle = () => (
     <Box sx={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
