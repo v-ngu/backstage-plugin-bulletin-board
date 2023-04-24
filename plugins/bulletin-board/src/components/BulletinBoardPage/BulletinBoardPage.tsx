@@ -137,7 +137,7 @@ export const BulletinBoardPage = () => {
 
     return(
         <Page themeId="home">
-            <Header title="Bulletin Board" subtitle="A basic place to share ideas and links with your team." />
+            <Header title="Bulletin Board" subtitle="A place to share ideas and links with your team." />
             <Content>
                 <FormDialog
                     status={open}
