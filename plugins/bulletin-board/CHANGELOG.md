@@ -1,5 +1,11 @@
 # backstage-plugin-bulletin-board
 
+## 0.3.1
+
+### Patch Changes
+
+- 3ff5ddf: Update the wording in BulletinBoardPage component
+
 ## 0.3.0
 
 ### Minor Changes
