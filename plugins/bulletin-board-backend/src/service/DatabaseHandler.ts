@@ -10,6 +10,15 @@ type Options = {
   database: PluginDatabaseManager;
 };
 
+type Body = {
+  id: string,
+  title: string,
+  description: string,
+  url: string,
+  tags: string,
+  user: string
+}
+
 export class DatabaseHandler {
   static async create(options: Options): Promise<DatabaseHandler> {
     const { database } = options;
@@ -37,7 +46,7 @@ export class DatabaseHandler {
       .from('bulletins');
   }
 
-  createBulletin = async (body) => {
+  createBulletin = async (body: Body) => {
     await this.client
       .insert({
         bulletin_id: body.id,
@@ -53,7 +62,7 @@ export class DatabaseHandler {
       .into('bulletins');
   }
 
-  updateBulletin = async (id, body) => {
+  updateBulletin = async (id: string, body: Body) => {
     return await this.client('bulletins')
       .where({bulletin_id: id})
       .update({
@@ -67,7 +76,7 @@ export class DatabaseHandler {
       })
   };
 
-  deleteBulletin = async (id) => {
+  deleteBulletin = async (id: string) => {
     return await this.client('bulletins')
         .where({bulletin_id: id})
         .del();
