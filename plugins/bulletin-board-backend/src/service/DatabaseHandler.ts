@@ -1,6 +1,5 @@
 import {PluginDatabaseManager, resolvePackagePath} from '@backstage/backend-common';
 import { Knex } from 'knex';
-import { Request, Response } from 'express';
 
 const migrationsDir = resolvePackagePath(
   'backstage-plugin-bulletin-board-backend',
@@ -31,20 +30,14 @@ export class DatabaseHandler {
     this.client = client;
   }
 
-  getBulletins = async (_request:Request, response:Response) => {
-    const bulletins = await this.client
+  getBulletins = async () => {
+    return await this.client
       .select()
       .orderBy('updated_at','desc')
       .from('bulletins');
-    if (bulletins?.length) {
-      response.json({ status: 'ok', data: bulletins });
-    } else {
-      response.json({ status: 'ok', data: [] });
-    }
   }
 
-  createBulletin = async (request:Request, response:Response) => {
-    const body = request.body;
+  createBulletin = async (body) => {
     await this.client
       .insert({
         bulletin_id: body.id,
@@ -58,39 +51,25 @@ export class DatabaseHandler {
         updated_at: new Date().toISOString(),
       })
       .into('bulletins');
-    response.json({ status: 'ok' });
   }
 
-  updateBulletin = async (request:Request, response:Response) => {
-    const { id } = request.params;
-    const body = request.body;
-    const count = await this.client('bulletins')
-        .where({bulletin_id: id})
-        .update({
-          bulletin_id: body.id,
-          bulletin_title: body.title,
-          bulletin_description: body.description,
-          bulletin_url: body.url,
-          bulletin_tags: body.tags.toString(),
-          updated_by: body.user,
-          updated_at: new Date().toISOString()
-        })
-      if (count) {
-        response.json({ status: 'ok' });
-      } else {
-        response.status(404).json({ message: 'Record not found' });
-      }
-  }
+  updateBulletin = async (id, body) => {
+    return await this.client('bulletins')
+      .where({bulletin_id: id})
+      .update({
+        bulletin_id: body.id,
+        bulletin_title: body.title,
+        bulletin_description: body.description,
+        bulletin_url: body.url,
+        bulletin_tags: body.tags.toString(),
+        updated_by: body.user,
+        updated_at: new Date().toISOString()
+      })
+  };
 
-  deleteBulletin = async (request:Request, response:Response) => {
-    const { id } = request.params;
-    const count = await this.client('bulletins')
+  deleteBulletin = async (id) => {
+    return await this.client('bulletins')
         .where({bulletin_id: id})
         .del();
-    if (count) {
-      response.json({ status: 'ok' });
-    } else {
-      response.status(404).json({ message: 'Record not found' });
-    }
   }
 }

@@ -1,7 +1,6 @@
 import { DatabaseHandler } from './DatabaseHandler';
 import { TestDatabaseId, TestDatabases } from '@backstage/backend-test-utils';
 import { Knex as KnexType } from 'knex';
-import { Request, Response } from 'express';
 
 const body: any = {
   id: "id1",
@@ -56,14 +55,6 @@ describe('DatabaseHandler', () => {
         updated_at: body.updated_at,
       });
 
-      let responseObject = {};
-      const request = {};
-      const response: Partial<Response> = {
-        json: jest.fn().mockImplementation(result => {
-          responseObject = result;
-        })
-      };
-
       let data = {
         bulletin_id: "id1",
         bulletin_title: "T",
@@ -88,12 +79,9 @@ describe('DatabaseHandler', () => {
         }
       }
 
-      await dbHandler.getBulletins(request as Request, response as Response);
+      const res = await dbHandler.getBulletins();
 
-      expect(responseObject).toEqual({
-        status: 'ok',
-        data: [expectedData()]
-      });
+      expect(res).toEqual([expectedData()]);
     },
     60000
   );
