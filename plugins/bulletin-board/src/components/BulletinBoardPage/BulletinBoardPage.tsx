@@ -7,7 +7,12 @@ import { FormDialog } from '../FormDialog';
 import { bulletinBoardApiRef, Bulletin } from '../../api'
 import { useApi } from '@backstage/core-plugin-api';
 
-export const BulletinBoardPage = () => {
+type BulletinBoardPageProps = {
+  title?: string,
+  subtitle?: string
+};
+
+export const BulletinBoardPage = (props: BulletinBoardPageProps) => {
     const useStyles = makeStyles({
         subHeader: {
             display: "flex", 
@@ -137,7 +142,7 @@ export const BulletinBoardPage = () => {
 
     return(
         <Page themeId="home">
-            <Header title="Bulletin Board" subtitle="A basic place to share ideas and links with your team." />
+            <Header title={props.title ?? 'Bulletin Board'} subtitle={props.subtitle ?? 'A basic place to share ideas and links with your team.'} />
             <Content>
                 <FormDialog
                     status={open}
