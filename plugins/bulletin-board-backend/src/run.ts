@@ -3,7 +3,7 @@ import yn from 'yn';
 import { startStandaloneServer } from './service/standaloneServer';
 
 const port = process.env.PLUGIN_PORT ? Number(process.env.PLUGIN_PORT) : 7007;
-const enableCors = yn(process.env.PLUGIN_CORS, { default: false });
+const enableCors = yn(process.env.PLUGIN_CORS, { default: true });
 const logger = getRootLogger();
 
 startStandaloneServer({ port, enableCors, logger }).catch(err => {
