@@ -1,5 +1,11 @@
 # backstage-plugin-bulletin-board
 
+## 0.4.0
+
+### Minor Changes
+
+- 5e7acd3: Add custom title and subtitle
+
 ## 0.3.1
 
 ### Patch Changes
