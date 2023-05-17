@@ -54,19 +54,22 @@ export const BulletinCard = (props: any) => {
             <IconButton onClick={() => editDialog(individualCard.bulletin_id)} id="editButton">
                 <EditIcon />
             </IconButton>
-            <Button 
-                color="primary" 
-                variant="contained"  
-                href={
-                    individualCard.bulletin_url.startsWith("http") 
-                    ? individualCard.bulletin_url 
-                    : `//${individualCard.bulletin_url}`
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Open URL
-            </Button>
+            {
+                individualCard.bulletin_url &&
+                <Button 
+                    color="primary" 
+                    variant="contained"  
+                    href={
+                        individualCard.bulletin_url.startsWith("http") 
+                        ? individualCard.bulletin_url 
+                        : `//${individualCard.bulletin_url}`
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Open URL
+                </Button>
+            }
         </CardActions>
         </Card>
     ))
