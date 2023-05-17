@@ -1,5 +1,11 @@
 # backstage-plugin-bulletin-board
 
+## 0.4.1
+
+### Patch Changes
+
+- cdb7128: Hide url button if no url is provided
+
 ## 0.4.0
 
 ### Minor Changes
