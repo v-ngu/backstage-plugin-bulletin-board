@@ -1,5 +1,6 @@
 # backstage-plugin-bulletin-board-backend
 
+
 ## 0.2.1
 
 ### Patch Changes
